@@ -137,9 +137,9 @@ def _nblist_pbc_cuda(conn_mat, shifts):
 def _nblist_pbc_cpu(conn_mat, shifts):
     conn_mat = conn_mat.cpu().numpy()
     mat_idxj, mat_pad, mat_S_idx = _cpu_dense_nb_mat_sft(conn_mat)
-    mat_idxj = torch.from_numpy(mat_idxj).cpu()
-    mat_pad = torch.from_numpy(mat_pad).cpu()
-    mat_S_idx = torch.from_numpy(mat_S_idx).cpu()
+    mat_idxj = torch.from_numpy(mat_idxj)
+    mat_pad = torch.from_numpy(mat_pad)
+    mat_S_idx = torch.from_numpy(mat_S_idx)
     mat_S = shifts[mat_S_idx]
     return mat_idxj, mat_pad, mat_S
 

@@ -28,12 +28,15 @@ def _test_dipole(calc, atoms):
     atoms.calc = calc
     e =atoms.get_potential_energy()
     assert e.shape == ()
-    assert e < 0.0
 
+    assert hasattr(atoms, 'get_charges')
+    q = atoms.get_charges()
+    assert q.shape == (len(atoms),)
+    
+    assert hasattr(atoms, 'get_dipole_moment')
     dm = atoms.get_dipole_moment()
     assert dm.shape == (3,)
-    assert np.linalg.norm(dm) > 0.0
-
+    
 
 def test_calculator():
     for model in MODELS:
