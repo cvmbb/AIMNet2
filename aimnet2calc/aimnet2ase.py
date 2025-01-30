@@ -85,8 +85,7 @@ class AIMNet2ASE(Calculator):
         for k, v in results.items():
             results[k] = v.detach().cpu().numpy()
 
-        # ase expects us to return a scalar
-        self.results['energy'] = results['energy'][0]
+        self.results['energy'] = results['energy'].item()
         self.results['charges'] = results['charges']
         self.results['dipole_moment'] = self.get_dipole_moment(self.atoms)
 

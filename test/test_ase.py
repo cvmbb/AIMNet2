@@ -27,7 +27,7 @@ def _stuct_batch():
 def _test_dipole(calc, atoms):
     atoms.calc = calc
     e =atoms.get_potential_energy()
-    assert e.shape == ()
+    assert isinstance(e, float)
 
     assert hasattr(atoms, 'get_charges')
     q = atoms.get_charges()
